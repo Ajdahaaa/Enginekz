@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Машины{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% if user.is_authenticated %}
+<h2 class="news">Машины</h2> <br>
+<section class="news-card">
+    <div class="container">
+        <div class="ad-item">
+            <img src="{% static 'images/gen1200 1.jpg' %}" alt="Mercedes-Benz E 320">
+            <div class="ad-info">
+               <h3>Mercedes-Benz E 320</h3>
+               <p>4 800 000 ₸</p>
+               <p>2003 г. / Б/у седан / 3.2 л / бензин / белый</p>
+               <p>Добавлен: 02 октября</p>
+            </div>
+        </div>
+        <div class="ad-item">
+            <img src="{% static 'images/mitsi.jpg' %}" alt="Mitsubishi Galant">
+            <div class="ad-info">
+               <h3>Mitsubishi Galant</h3>
+               <p>2 500 000 ₸</p>
+               <p>1998 г. / Б/у седан / 2.5 л / бензин / белый</p>
+               <p>Добавлен: 03 октября</p>
+            </div>
+        </div>
+        <div class="ad-item">
+            <img src="{% static 'images/bmw.png' %}" alt="BMW M4 G82">
+            <div class="ad-info">
+               <h3>BMW M4 G82</h3>
+               <p>54 600 000 ₸</p>
+               <p>2020 г. / Б/у седан / 5.5 л / бензин / сталь</p>
+               <p>Добавлен: 05 октября</p>
+            </div>
+        </div>
+</section> 
+{% else %}
+<section class="access">
+   <div class="container">
+      <h1 class="title">Вы анонимный пользователь</h1>
+      <p class="dark-text">Чтобы работать с приложением, Вам нужно будет пройти регистрацию и авторизацию</p>
+      <div class="access-action">
+         <a href="{% url 'sign_up_page' %}" class="logbtn">Регистрация</a>
+         <a href="{% url 'login_page' %}" class="logbtn">Вход</a>
+      </div>
+   </div>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Описание{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<link rel="stylesheet" href="{% static './css/style.css' %}">
+<div class="Merc">
+    <br>
+    <h2>Mercedes-Benz E 320, 2003 года</h2>
+    <img class="Merc" src="{% static './images/gen1200 1.jpg' %}" alt="Gen1200">
+</div>
+<h2>4 800 000 ₸</h2>
+<br>
+<div class="card">
+    <p>Город Алматы</p> <br>
+    <p>Поколение: 2002 - 2006 W211/S211</p> <br>
+    <p>Кузов: Седан</p> <br>
+    <p>Объем двигателя: 3.2 (бензин)</p> <br>
+    <p>Пробег: 400 000 км</p> <br>
+    <p>Коробка передач: Автомат</p> <br>
+    <p>Привод: Задний привод</p> <br>
+    <p>Руль: Слева</p> <br>
+    <p>Цвет: Белый</p> <br>
+    <p>Номер телефона: <span class="phone-number">+7 777 777 77 77</span></p>
+</div>
+{% else %}
+<section class="access">
+   <div class="container">
+      <h1 class="title">Вы анонимный пользователь</h1>
+      <p class="dark-text">Чтобы работать с приложением, Вам нужно будет пройти регистрацию и авторизацию</p>
+      <div class="access-action">
+         <a href="{% url 'sign_up_page' %}" class="logbtn">Регистрация</a>
+         <a href="{% url 'login_page' %}" class="logbtn">Вход</a>
+      </div>
+   </div>
+</section>
+{% endif %}
+{% endblock %}

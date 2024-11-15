@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Все объявления{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<h2 class="news">Все объявления</h2> <br>
+{% if user.is_authenticated %}
+<section class="news-card">
+    <div class="container">
+       <div class="ad-item">
+          <img src="{% static './images/gen1200 1.jpg' %}" alt="Mercedes-Benz E 320">
+          <div class="ad-info">
+             <h3>Mercedes-Benz E 320</h3>
+             <p>4 800 000 ₸</p>
+             <p>2003 г. / Б/у седан / 3.2 л / бензин / белый</p>
+             <p>Добавлен: 02 октября</p>
+             <button class="view">
+               <a href="{% url 'car-detail' car_id=1 %}">Смотреть</a>
+           </button>
+          </div>
+       </div>
+       <div class="ad-item">
+          <img src="{% static './images/image.jpg' %}" alt="BMW 525">
+          <div class="ad-info">
+             <h3>BMW 525</h3>
+             <p>5 300 000 ₸</p>
+             <p>2007 г. / Б/у седан / 3.0 л / дизель / черный</p>
+             <p>Добавлен: 04  октября</p>
+             <button class="view">
+               <a href="{% url 'car-detail' car_id=2 %}">Смотреть</a>
+           </button>
+          </div>
+       </div>
+       <div class="ad-item">
+          <img src="{% static './images/мерм.webp' %}" alt="Mercedes-Benz CLS 63 AMG">
+          <div class="ad-info">
+             <h3>Mercedes-Benz CLS 63 AMG</h3>
+             <p>80 000 000 ₸</p>
+             <p>2016 г. / Б/у седан / 3.2 л / бензин / красный металик</p>
+             <p>Добавлен: 05 октября</p>
+             <button class="view">
+               <a href="{% url 'car-detail' car_id=3 %}">Смотреть</a>
+           </button>
+          </div>
+    </div>
+</section>
+{% else %}
+<section class="access">
+   <div class="container">
+      <h1 class="title">Вы анонимный пользователь</h1>
+      <p class="dark-text">Чтобы работать с приложением, Вам нужно будет пройти регистрацию и авторизацию</p>
+      <div class="access-action">
+         <a href="{% url 'sign_up_page' %}" class="logbtn">Регистрация</a>
+         <a href="{% url 'login_page' %}" class="logbtn">Вход</a>
+      </div>
+   </div>
+</section>
+{% endif %}
+{% endblock %}

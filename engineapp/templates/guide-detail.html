@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}{{ guide.title }}{% endblock %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<section>
+    <div class="Moshennik">
+        <br>
+        <h2 class="Mosh">{{ guide.title }}</h2> <br><br><br>
+        <img class="Moshennik" src="{{ guide.image }}" alt="{{ guide.title }}">
+    </div>
+    <h3>{{ guide.description }} </h3> <br><br> 
+
+    <h3>Дата публикации: <span>{{ guide.created_at|date:"d.m.Y" }}</span></h3>
+    <a href="{% url 'guides_page' %}"><button class="back-btn">Назад</button></a>
+</section>
+{% else %}
+<section class="access">
+   <div class="container">
+      <h1 class="title">Вы анонимный пользователь</h1>
+      <p class="dark-text">Чтобы работать с приложением, Вам нужно будет пройти регистрацию и авторизацию</p>
+      <div class="access-action">
+         <a href="{% url 'sign_up_page' %}" class="logbtn">Регистрация</a>
+         <a href="{% url 'login_page' %}" class="logbtn">Вход</a>
+      </div>
+   </div>
+</section>
+{% endif %}
+{% endblock %}

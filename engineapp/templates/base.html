@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static './css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container-header" onclick="MenuAction()">
+            <img src="{% static './images/menu-btn.svg' %}" alt="Menu-button">
+            <div class="button-header" >Engine</div>
+        </div>
+    </header>
+      <div id= "menu-list" style="display: none;">
+        <div class="container">
+            <ul class = "menu-list">
+                <li class="menu-list__item">
+                  <a href="{% url 'home_page' %}" class = "menu-list__link"><img src="{% static './images/menu-list/home.svg.svg' %}" alt="Home">
+                    <span>Главная</span>
+                   </a>
+                </li>  
+                <li class="menu-list__item">
+                    <a href="{% url 'ads_list' %}" class = "menu-list__link"><img src="{% static './images/menu-list/loupe-svgrepo-com.svg' %}" alt="Heart">
+                    <span>Объявления</span>
+                     </a>
+                  </li>  
+                  <li class="menu-list__item">
+                    <a href="{% url 'guides_page' %}" class = "menu-list__link"><img src="{% static './images/menu-list/vopros.svg' %}" alt="Vopros">
+                    <span>Engine Гид</span>
+                     </a>
+                  </li>  
+                  <li class="menu-list__item">
+                    <a href="{% url 'categories_page' %}" class = "menu-list__link"><img src="{% static './images/menu-list/category.svg' %}" alt="Category">
+                    <span>Категории</span>
+                     </a>
+                  </li>
+                  {% if not user.is_authenticated %}
+                  <li class="menu-list__item">
+                    <a href="{% url 'sign_up_page' %}" class = "menu-list__link"><img src="{% static './images/menu-list/regis.svg' %}" alt="Sing Up">
+                    <span>Регистрация</span>
+                     </a>
+                  </li>  
+                  <li class="menu-list__item">
+                    <a href="{% url 'login_page' %}" class = "menu-list__link"><img src="{% static './images/menu-list/vhod.svg' %}" alt="Log In">
+                    <span>Вход</span>
+                     </a>
+                  </li>
+                  {% else %}
+                <li class="menu-list__item">
+                  <a href="{% url 'logout_action' %}" class = "menu-list__link"><img src="{% static './images/menu-list/Frame.svg' %}" alt="Nomer">
+                  <span>{{ user.username }}:Выход</span>
+                  </a>
+                </li>
+                {% endif %}  
+            </ul>
+        </div>
+    </div>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>      
+
+
+
+    <script src="{% static './js/script.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<h2 class="title-category">Категории</h2>
+<section class="categories">
+    <div class="container">
+        <div class="categories-list">
+            {% for category in categories %}
+            <a href="#" class="category-item">
+                {% if category.icon %}
+                    <img src="{{ category.icon.url }}" alt="{{ category.name }} icon" class="category-icon">
+                {% endif %}
+                {{ category.name }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<h2 class="news">Интересные объявления</h2> <br>
+<section class="news-card">
+    <div class="container">
+        <div class="ad-item">
+            <img src="{% static './images/gen1200 1.jpg' %}" alt="Mercedes-Benz E 320">
+            <div class="ad-info">
+               <h3>Mercedes-Benz E 320</h3>
+               <p>4 800 000 ₸</p>
+               <p>2003 г. / Б/у седан / 3.2 л / бензин / белый</p>
+               <p>Добавлен: 02 октября</p>
+               <button class="view">
+                 <a href="{% url 'car-detail' car_id=1 %}">Смотреть</a>
+             </button>
+            </div>
+         </div>
+         <div class="ad-item">
+            <img src="{% static './images/image.jpg' %}" alt="BMW 525">
+            <div class="ad-info">
+               <h3>BMW 525</h3>
+               <p>5 300 000 ₸</p>
+               <p>2007 г. / Б/у седан / 3.0 л / дизель / черный</p>
+               <p>Добавлен: 04  октября</p>
+               <button class="view">
+                 <a href="{% url 'car-detail' car_id=2 %}">Смотреть</a>
+             </button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

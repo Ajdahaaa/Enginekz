@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Engine Гид{% endblock %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+<section>
+    <h2 class="guide-title">Engine Гид</h2>
+    <div class="guide-list">
+        {%  for guide in guides %}
+        <a href="{% url 'guide_detail_page' pk=guide.pk %}" class="guide-item">{{ guide.title }}</a> 
+        {%  endfor %}
+    </div>
+</section>
+{% else %}
+<section class="access">
+   <div class="container">
+      <h1 class="title">Вы анонимный пользователь</h1>
+      <p class="dark-text">Чтобы работать с приложением, Вам нужно будет пройти регистрацию и авторизацию</p>
+      <div class="access-action">
+         <a href="{% url 'sign_up_page' %}" class="logbtn">Регистрация</a>
+         <a href="{% url 'login_page' %}" class="logbtn">Вход</a>
+      </div>
+   </div>
+</section>
+{% endif %}
+{% endblock %}
